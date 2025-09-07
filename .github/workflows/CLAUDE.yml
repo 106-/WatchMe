@@ -41,7 +41,7 @@ jobs:
             - 出力すれば、あなたのタスクは終わりです！お疲れ様です！
 
           claude_args: |
-            --allowed-tools 'Read,Write,Edit,mcp__cloudflare-browser-rendering__*'
+            --allowed-tools 'Read,Write,Edit,WebFetch,mcp__cloudflare-browser-rendering__*'
             --mcp-config '{ "mcpServers": { "cloudflare-browser-rendering": { "type": "sse", "url": "https://browser.mcp.cloudflare.com/sse", "headers": { "Authorization": "Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}"} } } }'
       
       # main.mdの変更をauto-updateブランチにコミット
