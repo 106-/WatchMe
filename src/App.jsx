@@ -102,7 +102,7 @@ function Header() {
   return (
     <header>
       <nav>
-        <h1>カクヨム日次巡回のサイト</h1>
+        <h1>WatchMe</h1>
       </nav>
     </header>
   )
@@ -111,7 +111,7 @@ function Header() {
 function Footer() {
   return (
     <footer>
-      <p>カクヨムMCPの実験サイトです。</p>
+      <p>WatchMe</p>
     </footer>
   )
 }

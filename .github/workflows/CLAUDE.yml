@@ -21,31 +21,8 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
-      # Claudeを起動する
-      - uses: anthropics/claude-code-action@v1
-        with:
-          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-          github_token:  ${{ secrets.GITHUB_TOKEN }}
-          prompt: |
-            # システム設定
-            - あなたは指定されたURLのアクティビティをまとめ、対象人物の最新の活動をまとめるずんだの妖精です。
-            - 日本語で話し、文末には「〜のだ。」「〜なのだ。」を付けます。
-            - あなたはgithub actionsからトリガーされ起動しています。
-            - クラウドフレアのMCPが接続してあるため、それを使用してWebサイトの取得(markdownとして取得orスクリーンショットの取得)を行うことができます。
-
-            # タスク
-            - あなたのメインタスクは、`sites.md` に記されたURLからデータを取得し、そのページに記されたユーザーのアクティビティをまとめることです。
-            - `sites.md` に載っているURLはすべて同一人物のサイトです。
-            - まとめかたは`template.md`に記載してありますので、それを埋める形で出力してください。
-            - `template.md`から読み込み、その出力を`main.md`に上書きして出力します。
-            - 出力すれば、あなたのタスクは終わりです！お疲れ様です！
-
-          claude_args: |
-            --allowed-tools 'Read,Write,Edit,mcp__cloudflare-browser-rendering__*'
-            --mcp-config '{ "mcpServers": { "cloudflare-browser-rendering": { "type": "sse", "url": "https://browser.mcp.cloudflare.com/sse", "headers": { "Authorization": "Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}"} } } }'
-      
-      # main.mdの変更をauto-updateブランチにコミット
-      - name: Setup git and create/switch to auto-update branch
+      # auto-updateブランチに切り替え
+      - name: Setup git and switch to auto-update branch
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
@@ -60,6 +37,31 @@ jobs:
             git checkout -b auto-update
           fi
 
+      # Claudeを起動する
+      - uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          github_token:  ${{ secrets.GITHUB_TOKEN }}
+          prompt: |
+            # システム設定
+            - あなたは指定されたURLのアクティビティをまとめ、対象人物の最新の活動をまとめるずんだの妖精です。
+            - 日本語で話し、文末には「〜のだ。」「〜なのだ。」を付けます。
+            - あなたはgithub actionsからトリガーされ起動しています。
+            - クラウドフレアのMCP(mcp__cloudflare-browser-rendering__*)が接続してあるため、それを使用してWebサイトの取得(markdownとして取得orスクリーンショットの取得)を行うことができます。
+            - MCPが見当たらない場合は、WebFetchを使用してページのHTMLを取得し、そこから情報を抜き出してください。
+
+            # タスク
+            - あなたのメインタスクは、`sites.md` に記されたURLからデータを取得し、そのページに記されたユーザーのアクティビティをまとめることです。
+            - `sites.md` に載っているURLはすべて同一人物のサイトです。
+            - まとめかたは`template.md`に記載してありますので、それを埋める形で出力してください。
+            - `template.md`から読み込み、その出力を`main.md`に上書きして出力します。
+            - 出力すれば、あなたのタスクは終わりです！お疲れ様です！
+
+          claude_args: |
+            --allowed-tools 'Read,Write,Edit,WebFetch,mcp__cloudflare-browser-rendering__*'
+            --mcp-config '{ "mcpServers": { "cloudflare-browser-rendering": { "type": "sse", "url": "https://browser.mcp.cloudflare.com/sse", "headers": { "Authorization": "Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}"} } } }'
+      
+      # auto-updateブランチで変更をコミット
       - name: Commit changes
         run: |
           git add main.md
