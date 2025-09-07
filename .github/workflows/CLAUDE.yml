@@ -37,6 +37,22 @@ jobs:
             git checkout -b auto-update
           fi
 
+      - name: Create MCP Config  
+        run: |  
+          cat > /tmp/mcp-config.json << 'EOF'  
+          {  
+            "mcpServers": {  
+              "cloudflare-browser-rendering": {  
+                "type": "sse",  
+                "url": "https://browser.mcp.cloudflare.com/sse",  
+                "headers": {  
+                  "Authorization": "Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}"  
+                }  
+              }  
+            }  
+          }  
+          EOF  
+
       # Claudeを起動する
       - uses: anthropics/claude-code-action@v1
         with:
@@ -58,8 +74,8 @@ jobs:
             - 出力すれば、あなたのタスクは終わりです！お疲れ様です！
 
           claude_args: |
-            --allowed-tools 'Read,Write,Edit,WebFetch,mcp__cloudflare-browser-rendering__*'
-            --mcp-config '{ "mcpServers": { "cloudflare-browser-rendering": { "type": "sse", "url": "https://browser.mcp.cloudflare.com/sse", "headers": { "Authorization": "Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}"} } } }'
+            --allowedTools 'Read,Write,Edit,WebFetch,mcp__cloudflare-browser-rendering__*'
+            --mcp-config /tmp/mcp-config.json
       
       # auto-updateブランチで変更をコミット
       - name: Commit changes
