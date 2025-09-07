@@ -2,23 +2,50 @@
 
 ## まとめ
 
-Tomu Katsumata（106-）さんは、2025年9月6日にSteamでWorld of Warshipsをプレイしており、現在も活発に活動している。SteamとGitHubの両方でアクティブな様子が確認でき、最後の生存確認は2025年9月6日となっている。
+106氏は現在も活発にオンライン活動を継続中なのだ。最新の生存確認は2025年9月6日で、Steamでは定期的にゲームをプレイし、GitHubでは機械学習関連のプロジェクトを継続中なのだ。特にSteamでは過去2週間で59.5時間もプレイしており、主にストラテジーゲームを愛好していることが確認できるのだ。
 
 ## Steam
 
-最近2週間で59.5時間のプレイ時間を記録しており、非常にアクティブなゲーマーの姿が見える。最近プレイしたゲームは：
-- World of Warships（102時間、9月6日最終プレイ）
-- Hearts of Iron IV（2,992時間の総プレイ時間、9月5日最終プレイ）
-- Stellaris（480時間、9月3日最終プレイ）
+ユーザー名: "__106__"
+- レベル: 8
+- 友達: 3人
+- ゲーム数: 70個
 
-特にHearts of Iron IVには3,000時間近くを投入しており、かなりの戦略ゲーム好きであることがうかがえる。全70のゲームを所有し、レベル8のプロフィールを持つベテランユーザー。
+最近のアクティビティ（過去2週間）:
+- 総プレイ時間: 59.5時間
+- 最もプレイしたゲーム:
+  1. Hearts of Iron IV（総計2,992時間、最終プレイ：9月5日）
+  2. Stellaris（総計480時間、最終プレイ：9月3日）
+  3. World of Warships（総計102時間、最終プレイ：9月6日）
+
+現在はオフライン状態だが、定期的にストラテジーゲームを楽しんでいることが確認できるのだ。特にHearts of Iron IVには3,000時間近くを投入しており、真の戦略ゲーム愛好家であることがうかがえるのだ。
 
 ## GitHub
 
-52のリポジトリを公開しており、機械学習（DRBM-tensorflow、DBM-tensorflow）、Android開発（HellSinkerWallPaper）、ハードウェア（gbdumper）、Webアプリケーション（futaba2dat）など、幅広い分野でのプログラミング活動を行っている。特に深層学習や強化学習に関するプロジェクトが目立ち、技術的な探究心の高さが感じられる。Arctic Code Vault Contributorの実績もあり、オープンソースへの貢献も行っている。
+プロフィール名: Tomu Katsumata (106-)
+- リポジトリ数: 52個
+- ピン留めプロジェクト: 6個（主に機械学習とユーティリティプロジェクト）
+
+注目のリポジトリ:
+- DRBM-tensorflow (Discriminative Restricted Boltzmann Machine)
+- DBM-tensorflow (Deep Boltzmann Machine)
+- HellSinkerWallPaper（日本語プロジェクト）
+
+獲得バッジ:
+- Pair Extraordinaire (x2)
+- Quickdraw
+- YOLO
+- Pull Shark (x3)
+- Arctic Code Vault Contributor
+
+機械学習、TensorFlow、そして実験的なソフトウェア開発に興味を持っており、PythonとJavaプロジェクトが混在しているのだ。深層学習や強化学習に関するプロジェクトが目立ち、技術的な探究心の高さが感じられるのだ。
+
+## 個人サイト (t106.net)
+
+Python、機械学習、Linuxに焦点を当てた個人サイトを運営しているのだ。Twitter、GitHub、SlideShare、Steamへのソーシャルメディアリンクも設置されており、一元的な情報発信基地として機能しているのだ。
 
 ---
 
 # 感想の一句
 
-ゲームと　コードの狭間に　生きる人
+- ストラテジー　機械学習と　ゲームかな
