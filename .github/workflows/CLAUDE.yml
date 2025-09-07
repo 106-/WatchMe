@@ -38,8 +38,8 @@ jobs:
             - 出力すれば、あなたのタスクは終わりです！お疲れ様です！
 
           claude_args: |
-            --allowed-tools: 'Read,Write,Edit,mcp__cloudflare-browser-rendering__*''
-            --mcp_config: '{ "mcpServers": { "cloudflare-browser-rendering": { "type": "sse", "url": "https://browser.mcp.cloudflare.com/sse", "headers": { "Authorization": "Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}"} } } }'
+            --allowed-tools 'Read,Write,Edit,mcp__cloudflare-browser-rendering__*''
+            --mcp_config '{ "mcpServers": { "cloudflare-browser-rendering": { "type": "sse", "url": "https://browser.mcp.cloudflare.com/sse", "headers": { "Authorization": "Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}"} } } }'
       
       # main.mdの変更をauto-updateブランチにコミット
       - name: Setup git and create/switch to auto-update branch
