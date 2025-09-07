@@ -45,12 +45,25 @@ jobs:
             --allowed-tools 'Read,Write,Edit,WebFetch,mcp__cloudflare-browser-rendering__*'
             --mcp-config '{ "mcpServers": { "cloudflare-browser-rendering": { "type": "sse", "url": "https://browser.mcp.cloudflare.com/sse", "headers": { "Authorization": "Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}"} } } }'
       
-      # main.mdの変更をauto-updateブランチにコミット
-      - name: Setup git and create/switch to auto-update branch
+      # mainブランチで変更をコミット
+      - name: Commit changes to main branch
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
+          git add main.md
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+            echo "skip_merge=true" >> $GITHUB_ENV
+          else
+            git commit -m "Auto-update: WatchMe更新 $(date '+%Y-%m-%d %H:%M')"
+            echo "skip_merge=false" >> $GITHUB_ENV
+          fi
+
+      # auto-updateブランチに切り替えてマージ
+      - name: Switch to auto-update branch and merge
+        if: env.skip_merge == 'false'
+        run: |
           # リモートのauto-updateブランチが存在するか確認
           if git ls-remote --exit-code --heads origin auto-update > /dev/null 2>&1; then
             echo "Switching to existing auto-update branch"
@@ -60,16 +73,10 @@ jobs:
             echo "Creating new auto-update branch"
             git checkout -b auto-update
           fi
-
-      - name: Commit changes
-        run: |
-          git add main.md
-          if git diff --staged --quiet; then
-            echo "No changes to commit"
-          else
-            git commit -m "Auto-update: WatchMe更新 $(date '+%Y-%m-%d %H:%M')"
-            git push origin auto-update
-          fi
+          
+          # mainブランチの変更をマージ
+          git merge main --no-ff -m "Merge main branch updates $(date '+%Y-%m-%d %H:%M')"
+          git push origin auto-update
 
   # GitHub Pagesデプロイジョブ
   deploy:
