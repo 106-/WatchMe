@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "cloudflare-browser-rendering": {
+      "type": "sse",
+      "url": "https://browser.mcp.cloudflare.com/sse",
+      "headers": {
+        "Authorization": "Bearer HOGE_API_TOKEN"
+      }
+    }
+  }
+}
