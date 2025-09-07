@@ -37,21 +37,21 @@ jobs:
             git checkout -b auto-update
           fi
 
-      - name: Create MCP Config  
-        run: |  
-          cat > /tmp/mcp-config.json << 'EOF'  
-          {  
-            "mcpServers": {  
-              "cloudflare-browser-rendering": {  
-                "type": "sse",  
-                "url": "https://browser.mcp.cloudflare.com/sse",  
-                "headers": {  
-                  "Authorization": "Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}"  
-                }  
-              }  
-            }  
-          }  
-          EOF  
+      - name: Create MCP Config
+        run: |
+          cat > /tmp/mcp-config.json << 'EOF'
+          {
+            "mcpServers": {
+              "cloudflare-browser-rendering": {
+                "type": "sse",
+                "url": "https://browser.mcp.cloudflare.com/sse",
+                "headers": {
+                  "Authorization": "Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}"
+                }
+              }
+            }
+          }
+          EOF
 
       # Claudeを起動する
       - uses: anthropics/claude-code-action@v1
